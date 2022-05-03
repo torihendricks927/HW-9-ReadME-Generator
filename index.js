@@ -2,57 +2,59 @@ const fs = require("fs");
 
 const inquirer = require("inquirer");
 
+const questions = [
+    {
+    type: "input",
+    message: "What is the title for your ReadME?",
+    name: "title",
+},
+{
+    type: "input",
+    message: "What is the description for your ReadME?",
+    name: "description", 
+},
+{
+    type: "input",
+    message: "What are the installation instructions for your ReadME?",
+    name: "installation",
+},
+{
+    type: "input",
+    message: "What is the usage information for your ReadME?",
+    name: "usage",
+},
+{
+    type: "input",
+    message: "What are the contribution guidelines for your ReadME?",
+    name: "contribution",
+},
+{
+    type: "input",
+    message: "What are the test instructions for your ReadME?",
+    name: "test",
+},
+// need to add badge to top and license info at bottom of ReadMe,
+// must provide options
+{
+    type: "list",
+    message: "Which license do you wish to add to your ReadME?",
+    name: "license",
+    choices: ["Apache", "MIT", "GNU"],
+},
+{
+    type: "input",
+    message: "What is your github username?",
+    name: "github",
+},
+{
+    type: "input",
+    message: "What is your email address?",
+    name: "email",
+}];
+
 inquirer
-.prompt([
-    {
-        type: "title",
-        message: "What is the title for your ReadME?",
-        name: "title",
-    },
-    {
-        type: "description",
-        message: "What is the description for your ReadME?",
-        name: "description", 
-    },
-    {
-        type: "installation",
-        message: "What are the installation instructions for your ReadME?",
-        name: "installation",
-    },
-    {
-        type: "usage",
-        message: "What is the usage information for your ReadME?",
-        name: "usage",
-    },
-    {
-        type: "contribution",
-        message: "What are the contribution guidelines for your ReadME?",
-        name: "contribution",
-    },
-    {
-        type: "test",
-        message: "What are the test instructions for your ReadME?",
-        name: "test",
-    },
-    // need to add badge to top and license info at bottom of ReadMe,
-    // must provide options
-    {
-        type: "license",
-        message: "Which license do you wish to add to your ReadME?",
-        name: "license",
-        choices: ["Apache", "MIT", "GNU"],
-    },
-    {
-        type: "github",
-        message: "What is your github username?",
-        name: "github",
-    },
-    {
-        type: "email",
-        message: "What is your email address?",
-        name: "email",
-    },
-])
+.prompt(questions)
+
 .then((response) => {
 
     const readmeTemp = `
@@ -76,12 +78,15 @@ ${response.test}.
 ## License
 ${response.license}.
 
-## Contact
+## Questions
+For any additional questions, you can reach me at the following options:
 ${response.github}.
 ${response.email}.
 `
+return(response)
 })
 .then(function (response) {
+    console.log(response)
     for(let i = 0; i < response.license; i++) {
         if (response.license === 0) {
             ( `Copyright
@@ -106,7 +111,31 @@ ${response.email}.
                 
                 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.`)
         } else {
-            (``)
+            (`  Copyright (C) 
+
+            This program is free software: you can redistribute it and/or modify
+            it under the terms of the GNU General Public License as published by
+            the Free Software Foundation, either version 3 of the License, or
+            (at your option) any later version.
+        
+            This program is distributed in the hope that it will be useful,
+            but WITHOUT ANY WARRANTY; without even the implied warranty of
+            MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+            GNU General Public License for more details.
+        
+            You should have received a copy of the GNU General Public License
+            along with this program.  If not, see <https://www.gnu.org/licenses/>.
+            `)
         }
-    }
+    };
+
+    return readmeTemp
 })
+
+.then(function (data) {
+
+    fs.writeFile("README.md", data, (err) =>
+    err ? console.error(err) : console.log("Success!")
+  );
+    console.log(data);
+  });
