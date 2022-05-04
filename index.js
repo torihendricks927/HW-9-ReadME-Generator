@@ -81,9 +81,9 @@ ${response.github}.
 ${response.email}.
 `
 
- return readmeTemp,
+//  return readmeTemp,
 
- fs.writeFileSync('${readmeTemp}.md', generateMarkdown(response), (err) =>
+ fs.writeFileSync('${response.title}.md', generateMarkdown(response), (err) =>
  err ? console.error(err) : console.log("Success!")
 
  )}
