@@ -4,6 +4,7 @@
 We have created a ReadME generator that will allow the user to enter information for each section through node.js and it will then create a complete ReadME file. It will begin by asking for title, description, installation, usage, contribution, test, gitHub username, email, and which license to use. Once completed, it will input the information into a ReadME template. 
 
 (insert added video with screencastify here)
+https://drive.google.com/file/d/14hb0IdESV4ZEKCz_SVqYHpHYAi6MpTx9/view
 
 ## Installation
 Go to https://github.com/torihendricks927/HW-9-ReadME-Generator to git clone the index.js with template. Then go into terminal and begin the node index.js sequence to complete the questions inserted into template. 
