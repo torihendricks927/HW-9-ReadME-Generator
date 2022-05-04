@@ -83,7 +83,7 @@ inquirer
 
 // //  return readmeTemp,
 
- fs.writeFileSync('${response.title}.md', generateMarkdown(response), (err) =>
+ fs.writeFileSync('SAMPLE.md', generateMarkdown(response), (err) =>
  err ? console.error(err) : console.log("Success!")
 
  )}
