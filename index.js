@@ -54,34 +54,34 @@ inquirer
 
 .then((response) => {
 
- const readmeTemp = `
-# ${response.title}
+//  const readmeTemp = `
+// # ${response.title}
 
-## Description
-${response.description}.
+// ## Description
+// ${response.description}.
 
-## Installation
-${response.installation}.
+// ## Installation
+// ${response.installation}.
 
-## Usage
-${response.usage}.
+// ## Usage
+// ${response.usage}.
 
-## Contributing
-${response.contribution}.
+// ## Contributing
+// ${response.contribution}.
 
-## Tests
-${response.test}.
+// ## Tests
+// ${response.test}.
 
-## License
-${response.license}.
+// ## License
+// ${response.license}.
 
-## Questions
-For any additional questions, you can reach me at the following options:
-${response.github}.
-${response.email}.
-`
+// ## Questions
+// For any additional questions, you can reach me at the following options:
+// ${response.github}.
+// ${response.email}.
+// `
 
-//  return readmeTemp,
+// //  return readmeTemp,
 
  fs.writeFileSync('${response.title}.md', generateMarkdown(response), (err) =>
  err ? console.error(err) : console.log("Success!")
