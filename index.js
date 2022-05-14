@@ -2,6 +2,7 @@ const fs = require("fs");
 const inquirer = require("inquirer");
 const generateMarkdown = require("./utils/generateMarkdown.js");
 
+// created prompts for questions
 inquirer
 .prompt([
     {
@@ -82,7 +83,7 @@ inquirer
 // `
 
 // //  return readmeTemp,
-
+// writes sample file html
  fs.writeFileSync('SAMPLE.md', generateMarkdown(response), (err) =>
  err ? console.error(err) : console.log("Success!")
 
